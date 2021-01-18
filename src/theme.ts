@@ -4,6 +4,7 @@ const pinkLavender = '#e4b7e5ff';
 const cyberGrape = '#63458aff';
 const darkOrchid = '#9a48d0ff';
 const lightSalmon = '#faa275';
+const cgRed = '#db3a34ff';
 
 const theme = {
   colours: {
@@ -13,12 +14,13 @@ const theme = {
     cta: lightSalmon,
     light: pinkLavender,
     text: white,
+    error: cgRed,
   },
   fontSizes: {
-    small: '11px',
-    medium: '12px',
-    large: '14px',
-    xlarge: '16px',
+    small: '12px',
+    medium: '16px',
+    large: '20px',
+    xlarge: '26px',
   },
   spacings: {
     s1: '4px',
