@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ThemeProvider } from 'styled-components';
 
 import theme from './theme';
-import Home from './screens/Home';
+import Login from './screens/login';
 import Chat from './screens/Chat';
 
 const Tab = createBottomTabNavigator();
@@ -21,7 +21,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <NavigationContainer>
         <Tab.Navigator tabBarOptions={tabBarOptions}>
-          <Tab.Screen name="Home" component={Home} />
+          <Tab.Screen name="Login" component={Login} />
           <Tab.Screen name="Chat" component={Chat} />
         </Tab.Navigator>
       </NavigationContainer>

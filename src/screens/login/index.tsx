@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ScreenContainer, Text, Heading, Button } from '../components';
+import { ScreenContainer, Text, Heading, Button } from '../../components';
 import theme from '../theme';
+import { logIn } from './dummyApi';
 
 const TextContainer = styled.View`
   width: 80%;
@@ -31,18 +32,44 @@ interface Props {
 const Home = ({ navigation }: Props) => {
   const [email, updateEmail] = React.useState('');
   const [password, updatePassword] = React.useState('');
+  const [errMsg, updateErrMsg] = React.useState('');
+
   const changeEmail = React.useCallback(
     (text) => {
       updateEmail(text);
+      updateErrMsg('');
     },
-    [updateEmail],
+    [updateEmail, updateErrMsg],
   );
   const changePassword = React.useCallback(
     (text) => {
       updatePassword(text);
+      updateErrMsg('');
     },
-    [updatePassword],
+    [updatePassword, updateErrMsg],
   );
+
+  const submit = React.useCallback(() => {
+    if (!email) {
+      updateErrMsg('Please enter your email address');
+      return;
+    }
+
+    if (!password) {
+      updateErrMsg('Please enter your password');
+      return;
+    }
+
+    const { err, user } = logIn({ email, password });
+
+    if (err) {
+      updateErrMsg(err);
+      return;
+    }
+
+    console.log(user);
+    // TODO: navigate to home screen/contacts
+  }, [updateErrMsg, email, password]);
 
   return (
     <ScreenContainer>
@@ -66,8 +93,8 @@ const Home = ({ navigation }: Props) => {
           secureTextEntry
         />
       </TextContainer>
-      <Button onPress={() => {}} content="Submit" />
-      <ErrorText>Sorry incorrect password</ErrorText>
+      <Button onPress={submit} content="Submit" />
+      {errMsg ? <ErrorText>{errMsg}</ErrorText> : null}
     </ScreenContainer>
   );
 };
