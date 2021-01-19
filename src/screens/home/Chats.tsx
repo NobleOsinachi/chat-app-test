@@ -1,9 +1,9 @@
 import React from 'react';
-import { ScreenContainer, Text } from '../components';
+import { ScreenContainer, Text } from '../../components';
 
 const Chat = () => (
   <ScreenContainer>
-    <Text>Chat</Text>
+    <Text>Chats</Text>
   </ScreenContainer>
 );
 

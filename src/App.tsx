@@ -1,29 +1,23 @@
 import React from 'react';
 import { SafeAreaView, View, Text, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import { ThemeProvider } from 'styled-components';
 
 import theme from './theme';
 import Login from './screens/login';
-import Chat from './screens/Chat';
+import Home from './screens/home';
 
-const Tab = createBottomTabNavigator();
-
-const tabBarOptions = {
-  activeTintColor: theme.colours.secondary,
-  inactiveTintColor: theme.colours.text,
-  style: { backgroundColor: theme.colours.background },
-};
+const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
-        <Tab.Navigator tabBarOptions={tabBarOptions}>
-          <Tab.Screen name="Login" component={Login} />
-          <Tab.Screen name="Chat" component={Chat} />
-        </Tab.Navigator>
+        <Stack.Navigator initialRoute="Login" headerMode="none">
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Home" component={Home} />
+        </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
   );

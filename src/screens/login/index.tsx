@@ -67,8 +67,8 @@ const Home = ({ navigation }: Props) => {
       return;
     }
 
-    console.log(user);
-    // TODO: navigate to home screen/contacts
+    // TODO async store and pass props
+    navigation.navigate('Home');
   }, [updateErrMsg, email, password]);
 
   return (
