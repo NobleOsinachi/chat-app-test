@@ -1,4 +1,5 @@
 import React from 'react';
+import SInfo from 'react-native-sensitive-info';
 import { ScreenContainer, Text } from '../../components';
 
 interface Props {
@@ -7,7 +8,11 @@ interface Props {
 
 const Logout = ({ navigation }: Props) => {
   React.useEffect(() => {
-    navigation.navigate('Login');
+    const logout = async () => {
+      await SInfo.setItem('user', '', {});
+      navigation.navigate('Login');
+    };
+    logout();
   }, []);
 
   return (

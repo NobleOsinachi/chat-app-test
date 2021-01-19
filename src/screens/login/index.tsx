@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import SInfo from 'react-native-sensitive-info';
+
 import { ScreenContainer, Text, Heading, Button } from '../../components';
 import theme from '../theme';
 import { logIn } from './dummyApi';
@@ -29,7 +31,19 @@ interface Props {
   navigation: any;
 }
 
-const Home = ({ navigation }: Props) => {
+const Login = ({ navigation }: Props) => {
+  React.useEffect(() => {
+    const getStoredUser = async () => {
+      const user = await SInfo.getItem('user', {});
+      console.log(user);
+
+      if (user) {
+        navigation.navigate('Home', { user: JSON.parse(user) });
+      }
+    };
+    getStoredUser();
+  }, []);
+
   const [email, updateEmail] = React.useState('');
   const [password, updatePassword] = React.useState('');
   const [errMsg, updateErrMsg] = React.useState('');
@@ -67,8 +81,12 @@ const Home = ({ navigation }: Props) => {
       return;
     }
 
-    // TODO async store and pass props
-    navigation.navigate('Home');
+    const storeUser = async () => {
+      await SInfo.setItem('user', JSON.stringify(user), {});
+      navigation.navigate('Home', { user });
+    };
+
+    storeUser();
   }, [updateErrMsg, email, password]);
 
   return (
@@ -98,4 +116,4 @@ const Home = ({ navigation }: Props) => {
     </ScreenContainer>
   );
 };
-export default Home;
+export default Login;

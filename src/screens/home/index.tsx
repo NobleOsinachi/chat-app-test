@@ -14,12 +14,27 @@ const tabBarOptions = {
   style: { backgroundColor: theme.colours.background },
 };
 
-const Home = () => (
-  <Tab.Navigator tabBarOptions={tabBarOptions}>
-    <Tab.Screen name="Contacts" component={Contacts} />
-    <Tab.Screen name="Chats" component={Chats} />
-    <Tab.Screen name="Logout" component={Logout} />
-  </Tab.Navigator>
-);
+interface Props {
+  route: {
+    displayName: string;
+    id: string;
+  };
+}
+
+const Home = (props: Props) => {
+  const { user } = props?.route?.params;
+  return (
+    <Tab.Navigator tabBarOptions={tabBarOptions}>
+      <Tab.Screen name="Contacts">
+        {(props) => <Contacts {...props} user={user} />}
+      </Tab.Screen>
+      <Tab.Screen name="Chats">
+        {(props) => <Chats {...props} user={user} />}
+      </Tab.Screen>
+      <Tab.Screen name="Logout" component={Logout} />
+    </Tab.Navigator>
+  );
+};
 
 export default Home;
+//<Tab.Screen name="Contacts" component={Contacts} />
