@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ScreenContainer, Text } from '../../components';
 import theme from '../../theme';
-import Contacts from './Contacts';
+import Contacts from './contacts';
 import Chats from './Chats';
 import Logout from './Logout';
 
@@ -37,4 +37,3 @@ const Home = (props: Props) => {
 };
 
 export default Home;
-//<Tab.Screen name="Contacts" component={Contacts} />
