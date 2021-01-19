@@ -1,4 +1,11 @@
-const users = {
+export interface User {
+  id: number;
+  email: string;
+  displayName: string;
+  password: string;
+}
+
+export const users = {
   0: {
     id: 0,
     email: 'zero@zero.com',
@@ -31,7 +38,7 @@ const users = {
   },
 };
 
-interface User {
+export interface UserNonSensitive {
   displayName: string;
   id: number;
 }
@@ -43,7 +50,7 @@ interface LogInArgs {
 
 interface LogInRes {
   err: string | undefined;
-  user: User | undefined;
+  user: UserNonSensitive | undefined;
 }
 
 export const logIn = ({ email, password }: LogInArgs): LogInRes => {

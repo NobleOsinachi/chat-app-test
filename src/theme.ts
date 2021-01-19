@@ -27,6 +27,7 @@ const theme = {
     s2: '8px',
     s3: '12px',
     s4: '16px',
+    s5: '20px',
   },
 };
 

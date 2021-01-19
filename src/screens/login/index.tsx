@@ -35,7 +35,6 @@ const Login = ({ navigation }: Props) => {
   React.useEffect(() => {
     const getStoredUser = async () => {
       const user = await SInfo.getItem('user', {});
-      console.log(user);
 
       if (user) {
         navigation.navigate('Home', { user: JSON.parse(user) });
